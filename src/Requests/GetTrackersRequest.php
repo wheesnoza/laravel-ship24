@@ -8,13 +8,13 @@ use Wheesnoza\Ship24\Data\TrackerData;
 
 class GetTrackersRequest extends Request
 {
-    public function send()
+    public function send(): TrackerCollection
     {
-        $data = Http::get(
+        $response = Http::get(
             $this->url("/trackers"),
             $this->query(),
         )->throw();
 
-        return TrackerCollection::make($data->collect('data.trackers')->mapInto(TrackerData::class));
+        return TrackerCollection::make($response->collect('data.trackers')->mapInto(TrackerData::class));
     }
 }

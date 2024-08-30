@@ -42,7 +42,7 @@
     },
     "scripts": {
     	"test": "vendor/bin/phpunit",
-    	"analyse" : "vendor/bin/phpstan analyse",
+    	"analyse" : "vendor/bin/phpstan analyse -c phpstan.neon.dist",
     	"format" : "vendor/bin/php-cs-fixer fix"
     },
     "config" : {

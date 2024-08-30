@@ -9,11 +9,11 @@ class GetTrackerRequest extends Request
 {
     public function send(string $id): TrackerData
     {
-        $data = Http::get(
+        $response = Http::get(
             $this->url("/trackers/$id"),
             $this->query(),
         )->throw();
 
-        return TrackerData::from($data->json('data.tracker'));
+        return TrackerData::from($response->json('data.tracker'));
     }
 }
