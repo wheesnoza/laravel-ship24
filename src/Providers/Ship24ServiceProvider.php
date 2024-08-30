@@ -15,8 +15,8 @@ class Ship24ServiceProvider extends ServiceProvider
       
           foreach ($requests as $requestClass) {
             $this->app->singleton($requestClass, fn () => new $requestClass(
-                config('services.ship24.access_token'),
-                config('services.ship24.uri')
+                config('ship24.access_token'),
+                config('ship24.uri')
               )
             );
           }
