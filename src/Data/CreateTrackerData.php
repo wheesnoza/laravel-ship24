@@ -6,9 +6,9 @@ use Spatie\LaravelData\Data;
 
 class CreateTrackerData extends Data
 {
-	/**
-	 * @property string[] $courierCodes
-	 */
+    /**
+     * @param ?string[] $courierCodes
+     */
     public function __construct(
         public readonly string $trackingNumber,
         public ?string $shipmentReference = null,

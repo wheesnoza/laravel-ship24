@@ -15,14 +15,16 @@ class Ship24ServiceProvider extends ServiceProvider
             GetTrackerRequest::class,
         ];
 
+        /** @var string $accessToken */
+        $accessToken = config('ship24.access_token');
+        /** @var string $uri */
+        $uri = config('ship24.uri');
+
         foreach ($requests as $requestClass) {
-            $this->app->singleton(
-                $requestClass,
-                fn () => new $requestClass(
-                    config('ship24.access_token'),
-                    config('ship24.uri')
-                )
-            );
+            $this->app->singleton($requestClass, fn () => new $requestClass(
+                $accessToken,
+                $uri
+            ));
         }
     }
 

@@ -10,6 +10,10 @@ abstract class Request
     ) {
     }
 
+    /**
+     * @param array<string, mixed> $extra
+     * @return array<string, mixed>
+     */
     protected function query(array $extra = []): array
     {
         return [
