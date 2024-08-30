@@ -1,2 +1,4 @@
 vendor
 .phpactor.json
+.php-cs-fixer.cache
+build/*

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\LaravelData\LaravelDataServiceProvider;
 use Wheesnoza\Ship24\Providers\Ship24ServiceProvider;
 
 abstract class TestCase extends Orchestra
@@ -10,7 +11,8 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
-            Ship24ServiceProvider::class
+            LaravelDataServiceProvider::class,
+            Ship24ServiceProvider::class,
         ];
     }
 }

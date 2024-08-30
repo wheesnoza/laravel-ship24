@@ -2,8 +2,8 @@
 
 namespace Wheesnoza\Ship24\Requests;
 
-use Wheesnoza\Ship24\Data\TrackerData;
 use Illuminate\Support\Facades\Http;
+use Wheesnoza\Ship24\Data\TrackerData;
 
 class GetTrackerRequest extends Request
 {

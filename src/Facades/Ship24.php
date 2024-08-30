@@ -2,8 +2,8 @@
 
 namespace Wheesnoza\Ship24\Facades;
 
-use Wheesnoza\Ship24\Ship24Service;
 use Illuminate\Support\Facades\Facade;
+use Wheesnoza\Ship24\Ship24Service;
 
 class Ship24 extends Facade
 {
