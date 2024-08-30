@@ -1,6 +1,18 @@
 {
     "name": "wheesnoza/laravel-ship24",
     "description": "A Ship24 API Rapper for Laravel.",
+    "keywords": [
+      "laravel",
+      "ship24",
+      "tracking",
+      "API",
+      "package"
+    ],
+    "support": {
+      "issues": "https://github.com/wheesnoza/laravel-ship24/issues",
+      "source": "https://github.com/wheesnoza/laravel-ship24"
+    },
+    "homepage": "https://github.com/wheesnoza/laravel-ship24",
     "type": "library",
     "license": "MIT",
     "version": "1.0.0",
@@ -29,6 +41,7 @@
         "phpstan/phpstan": "^1.12"
     },
     "scripts": {
+    	"test": "vendor/bin/phpunit",
     	"analyse" : "vendor/bin/phpstan analyse",
     	"format" : "vendor/bin/php-cs-fixer fix"
     },

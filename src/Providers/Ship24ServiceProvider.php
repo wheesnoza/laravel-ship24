@@ -9,9 +9,11 @@ class Ship24ServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/ship24.php', 'ship24');
+
         $requests = [
             GetTrackerRequest::class,
-          ];
+        ];
 
         foreach ($requests as $requestClass) {
             $this->app->singleton(
@@ -22,5 +24,10 @@ class Ship24ServiceProvider extends ServiceProvider
                 )
             );
         }
+    }
+
+    public function boot(): void
+    {
+        $this->publishes([__DIR__.'/../../config/ship24.php' => config_path('ship24.php')], 'config');
     }
 }
