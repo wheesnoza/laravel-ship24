@@ -9,7 +9,7 @@ use Wheesnoza\Ship24\Facades\Ship24;
 
 class GetTrackerRequestTest extends TestCase
 {
-    public function test_should_can_retrieve_a_tracker_by_id()
+    public function test_should_can_retrieve_a_tracker_by_id(): void
     {
         Config::set('ship24.access_token', 'accessToken');
         Config::set('ship24.uri', 'https://api.ship24.com/public/v1');
