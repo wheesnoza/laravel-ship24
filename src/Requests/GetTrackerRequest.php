@@ -10,7 +10,7 @@ class GetTrackerRequest extends Request
     public function send(string $id): TrackerData
     {
         $data = Http::get(
-            $this->url("trackers/$id"),
+            $this->url("/trackers/$id"),
             $this->query(),
         )->throw();
 
