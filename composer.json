@@ -17,6 +17,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
+    		"php": "^8.0",
         "spatie/laravel-data": "^4.8",
         "laravel/framework": "^11.21"
     },
