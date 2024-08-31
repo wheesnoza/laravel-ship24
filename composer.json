@@ -51,7 +51,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Wheesnoza\\Ship24\\Ship24ServiceProvider"
+                "Wheesnoza\\Ship24\\Providers\\Ship24ServiceProvider"
             ],
             "aliases": {
                 "Ship24": "Wheesnoza\\Ship24\\Facades\\Ship24"
