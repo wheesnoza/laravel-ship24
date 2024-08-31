@@ -4,9 +4,9 @@ namespace Wheesnoza\Ship24\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use Wheesnoza\Ship24\Collections\TrackerCollection;
+use Wheesnoza\Ship24\Data\CreateTrackerData;
 use Wheesnoza\Ship24\Data\TrackerData;
 use Wheesnoza\Ship24\Ship24Service;
-use Wheesnoza\Ship24\Data\CreateTrackerData;
 
 /**
  * @method static TrackerData tracker(string $trackerId)

@@ -2,6 +2,7 @@
 
 namespace Wheesnoza\Ship24;
 
+use Illuminate\Http\Client\RequestException;
 use Wheesnoza\Ship24\Collections\TrackerCollection;
 use Wheesnoza\Ship24\Data\CreateTrackerData;
 use Wheesnoza\Ship24\Data\TrackerData;
@@ -21,8 +22,13 @@ class Ship24Service
         return app(GetTrackersRequest::class)->send($page, $limit);
     }
 
+    /**
+     * Send a create tracker request by tracking number or CreateTrackerData.
+     *
+     * @param CreateTrackerData|string $tracker
+     */
     public function createTracker(CreateTrackerData|string $tracker): TrackerData
     {
-        return app(CreateTrackerRequest::class)->send($tracker);
+    	return app(CreateTrackerRequest::class)->send($tracker);
     }
 }
