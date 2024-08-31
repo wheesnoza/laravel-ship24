@@ -7,10 +7,10 @@ use Wheesnoza\Ship24\Data\TrackerData;
 
 class GetTrackerRequest extends Request
 {
-    public function send(string $id): TrackerData
+    public function send(string $trackerId): TrackerData
     {
         $response = Http::get(
-            $this->url("/trackers/$id"),
+            $this->url("/trackers/$trackerId"),
             $this->query(),
         )->throw();
 

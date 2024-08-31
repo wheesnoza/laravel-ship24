@@ -41,7 +41,7 @@
         "phpstan/phpstan": "^1.12"
     },
     "scripts": {
-    	"test": "vendor/bin/phpunit",
+    	"test": "vendor/bin/phpunit tests --colors",
     	"analyse" : "vendor/bin/phpstan analyse src",
     	"format" : "vendor/bin/php-cs-fixer fix"
     },

@@ -8,8 +8,9 @@ use Wheesnoza\Ship24\Data\TrackerData;
 
 class CreateTrackerRequest extends Request
 {
-    public function send(CreateTrackerData $data): TrackerData
+    public function send(CreateTrackerData|string $tracker): TrackerData
     {
+    	$data = $tracker instanceof CreateTrackerData ? $tracker : new CreateTrackerData($tracker);
         $response = Http::post(
             $this->url("/trackers"),
             $data->toArray(),
