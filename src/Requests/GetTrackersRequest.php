@@ -13,9 +13,9 @@ class GetTrackersRequest extends Request
             ->get($this->url("trackers"), $this->query(['page' => $page, 'limit' => $limit]))
              ->throw();
 
-        return TrackerCollection::make(
-            $response->collect('data.trackers')
-                ->map(fn ($tracker) => TrackerData::from($tracker))->all()
-        );
+        /** @var TrackerCollection $trackers */
+        $trackers = TrackerData::collect($response->collect('data.trackers'), TrackerCollection::class);
+
+        return $trackers;
     }
 }

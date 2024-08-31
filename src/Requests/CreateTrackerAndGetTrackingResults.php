@@ -14,9 +14,9 @@ class CreateTrackerAndGetTrackingResults extends Request
             ->post($this->url("trackers/track"), $data->toArray())
              ->throw();
 
-        return TrackingCollection::make(
-            $response->collect('data.trackings')
-                 ->map(fn ($tracking) => TrackingData::from($tracking))->all()
-        );
+        /** @var TrackingCollection $trackings */
+        $trackings = TrackingData::collect($response->collect('data.trackings'), TrackingCollection::class);
+
+        return $trackings;
     }
 }
