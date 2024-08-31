@@ -15,7 +15,6 @@
     "homepage": "https://github.com/wheesnoza/laravel-ship24",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.2",
     "autoload": {
         "psr-4": {
             "Wheesnoza\\Ship24\\": "src/",
