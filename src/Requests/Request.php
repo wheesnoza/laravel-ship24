@@ -31,6 +31,6 @@ abstract class Request
 
     protected function url(string $path): string
     {
-        return "{$this->uri}/$path";
+        return "{$this->uri}/public/v1/$path";
     }
 }

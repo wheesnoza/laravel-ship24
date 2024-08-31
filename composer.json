@@ -42,7 +42,7 @@
     },
     "scripts": {
     	"test": "vendor/bin/phpunit tests --colors",
-    	"analyse" : "vendor/bin/phpstan analyse src",
+    	"analyse" : "vendor/bin/phpstan analyse",
     	"format" : "vendor/bin/php-cs-fixer fix"
     },
     "config" : {

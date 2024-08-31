@@ -12,8 +12,8 @@ class CreateTrackerRequest extends Request
         $data = $tracker instanceof CreateTrackerData ? $tracker : new CreateTrackerData($tracker);
 
         $response = $this->http()
-        	->post($this->url("trackers"), $data->toArray())
-         	->throw();
+            ->post($this->url("trackers"), $data->toArray())
+             ->throw();
 
         return TrackerData::from($response->json('data.tracker'));
     }

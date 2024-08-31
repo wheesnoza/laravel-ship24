@@ -14,10 +14,9 @@ class GetTrackerRequestTest extends TestCase
     public function test_should_can_retrieve_a_tracker_by_id(): void
     {
         Config::set('ship24.access_token', 'accessToken');
-        Config::set('ship24.uri', 'https://api.ship24.com/public/v1');
 
         Http::fake([
-            'https://api.ship24.com/public/v1/*' => Http::response([
+            'https://api.ship24.com/*' => Http::response([
                 'data' => [
                     'tracker' => [
                         'trackerId' => '26148317-7502-d3ac-44a9-546d240ac0dd',
@@ -37,10 +36,9 @@ class GetTrackerRequestTest extends TestCase
     public function test_should_can_retrieve_trackers(): void
     {
         Config::set('ship24.access_token', 'accessToken');
-        Config::set('ship24.uri', 'https://api.ship24.com/public/v1');
 
         Http::fake([
-            'https://api.ship24.com/public/v1/*' => Http::response([
+            'https://api.ship24.com/*' => Http::response([
                 'data' => [
                     'trackers' => [
                         [
@@ -62,10 +60,9 @@ class GetTrackerRequestTest extends TestCase
     public function test_should_can_create_a_tracker_using_data_class(): void
     {
         Config::set('ship24.access_token', 'accessToken');
-        Config::set('ship24.uri', 'https://api.ship24.com/public/v1');
 
         Http::fake([
-            'https://api.ship24.com/public/v1/*' => Http::response([
+            'https://api.ship24.com/*' => Http::response([
                 'data' => [
                     'tracker' => [
                         'trackerId' => '26148317-7502-d3ac-44a9-546d240ac0dd',
@@ -85,10 +82,9 @@ class GetTrackerRequestTest extends TestCase
     public function test_should_can_create_a_tracker_using_a_tracking_number_string(): void
     {
         Config::set('ship24.access_token', 'accessToken');
-        Config::set('ship24.uri', 'https://api.ship24.com/public/v1');
 
         Http::fake([
-            'https://api.ship24.com/public/v1/*' => Http::response([
+            'https://api.ship24.com/*' => Http::response([
                 'data' => [
                     'tracker' => [
                         'trackerId' => '26148317-7502-d3ac-44a9-546d240ac0dd',
