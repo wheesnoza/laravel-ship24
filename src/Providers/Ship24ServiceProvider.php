@@ -3,6 +3,7 @@
 namespace Wheesnoza\Ship24\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Wheesnoza\Ship24\Requests\CreateTrackerAndGetTrackingResults;
 use Wheesnoza\Ship24\Requests\CreateTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackersRequest;
@@ -17,6 +18,7 @@ class Ship24ServiceProvider extends ServiceProvider
             GetTrackerRequest::class,
             GetTrackersRequest::class,
             CreateTrackerRequest::class,
+            CreateTrackerAndGetTrackingResults::class,
         ];
 
         foreach ($requests as $requestClass) {

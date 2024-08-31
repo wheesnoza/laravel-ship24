@@ -7,10 +7,8 @@ use Wheesnoza\Ship24\Data\TrackerData;
 
 class CreateTrackerRequest extends Request
 {
-    public function send(CreateTrackerData|string $tracker): TrackerData
+    public function send(CreateTrackerData $data): TrackerData
     {
-        $data = $tracker instanceof CreateTrackerData ? $tracker : new CreateTrackerData($tracker);
-
         $response = $this->http()
             ->post($this->url("trackers"), $data->toArray())
              ->throw();

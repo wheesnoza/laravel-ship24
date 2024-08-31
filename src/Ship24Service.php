@@ -3,8 +3,10 @@
 namespace Wheesnoza\Ship24;
 
 use Wheesnoza\Ship24\Collections\TrackerCollection;
+use Wheesnoza\Ship24\Collections\TrackingCollection;
 use Wheesnoza\Ship24\Data\CreateTrackerData;
 use Wheesnoza\Ship24\Data\TrackerData;
+use Wheesnoza\Ship24\Requests\CreateTrackerAndGetTrackingResults;
 use Wheesnoza\Ship24\Requests\CreateTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackersRequest;
@@ -21,13 +23,21 @@ class Ship24Service
         return app(GetTrackersRequest::class)->send($page, $limit);
     }
 
-    /**
-     * Send a create tracker request by tracking number or CreateTrackerData.
-     *
-     * @param CreateTrackerData|string $tracker
-     */
-    public function createTracker(CreateTrackerData|string $tracker): TrackerData
+    public function createTracker(CreateTrackerData|string $trackerOrTrackingNumber): TrackerData
     {
-        return app(CreateTrackerRequest::class)->send($tracker);
+        $data = $trackerOrTrackingNumber instanceof CreateTrackerData ?
+             $trackerOrTrackingNumber :
+               new CreateTrackerData($trackerOrTrackingNumber);
+
+        return app(CreateTrackerRequest::class)->send($data);
+    }
+
+    public function createTrackerAndGetTrackingResults(CreateTrackerData|string $trackerOrTrackingNumber): TrackingCollection
+    {
+        $data = $trackerOrTrackingNumber instanceof CreateTrackerData ?
+             $trackerOrTrackingNumber :
+               new CreateTrackerData($trackerOrTrackingNumber);
+
+        return app(CreateTrackerAndGetTrackingResults::class)->send($data);
     }
 }
