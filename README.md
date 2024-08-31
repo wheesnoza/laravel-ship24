@@ -24,7 +24,7 @@ composer require wheesnoza/laravel-ship24
 After installing, you may publish the configuration file:
 
 ```bash
-php artisan vendor:publish --tag=config
+php artisan vendor:publish --provider="Wheesnoza\Ship24\Providers\Ship24ServiceProvider" --tag=config
 ```
 
 ## Configuration
