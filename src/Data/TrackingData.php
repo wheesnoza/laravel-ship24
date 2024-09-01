@@ -8,7 +8,7 @@ use Wheesnoza\Ship24\Collections\EventCollection;
 class TrackingData extends Data
 {
     public function __construct(
-        public readonly TrackingTrackerData $tracker,
+        public readonly TrackerData $tracker,
         public readonly ShipmentData $shipment,
         public readonly EventCollection $events
     ) {

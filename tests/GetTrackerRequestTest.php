@@ -115,6 +115,8 @@ class GetTrackerRequestTest extends TestCase
                             'tracker' => [
                                 'trackerId' => '26148317-7502-d3ac-44a9-546d240ac0dd',
                                 'trackingNumber' => 'S24DEMO456393',
+                                'isSubscribed' => true,
+                                'createdAt' => '2021-03-10T05:13:00.000Z',
                             ],
                             'shipment' => [
                                 'shipmentId' => 'f4f888d7-d140-423f-9a48-e0689d27e098',
@@ -307,6 +309,8 @@ class GetTrackerRequestTest extends TestCase
                             'tracker' => [
                                 'trackerId' => '26148317-7502-d3ac-44a9-546d240ac0dd',
                                 'trackingNumber' => 'S24DEMO456393',
+                                'isSubscribed' => true,
+                                'createdAt' => '2021-03-10T05:13:00.000Z',
                             ],
                             'shipment' => [
                                 'shipmentId' => 'f4f888d7-d140-423f-9a48-e0689d27e098',

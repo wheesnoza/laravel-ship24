@@ -14,6 +14,7 @@ class TrackerData extends Data
     public function __construct(
         public readonly string $trackerId,
         public readonly string $trackingNumber,
+        public readonly ?string $shipmentReference,
         public readonly string $isSubscribed,
         #[WithCast(DateTimeInterfaceCast::class, format: 'Y-m-d\TH:i:s.u\Z')]
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: 'Y-m-d\TH:i:s.u\Z')]

@@ -16,7 +16,7 @@ class CreateTrackerData extends Data
         public ?string $destinationCountryCode = null,
         public ?string $destinationPostCode = null,
         public ?string $shippingDate = null,
-        public ?array $courierCodes = null,
+        public ?array $courierCode = null,
         public ?string $courierName = null,
         public ?string $trackingUrl = null,
         public ?string $orderNumber = null,
