@@ -4,7 +4,7 @@ namespace Wheesnoza\Ship24\Requests;
 
 use Wheesnoza\Ship24\Collections\TrackingCollection;
 use Wheesnoza\Ship24\Data\CreateTrackerData;
-use Wheesnoza\Ship24\Data\TrackingData;
+use Wheesnoza\Ship24\Data\Tracking;
 
 class CreateTrackerAndGetTrackingResults extends Request
 {
@@ -15,7 +15,7 @@ class CreateTrackerAndGetTrackingResults extends Request
              ->throw();
 
         /** @var TrackingCollection $trackings */
-        $trackings = TrackingData::collect($response->collect('data.trackings'), TrackingCollection::class);
+        $trackings = Tracking::collect($response->collect('data.trackings'), TrackingCollection::class);
 
         return $trackings;
     }

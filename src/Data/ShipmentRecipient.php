@@ -4,7 +4,7 @@ namespace Wheesnoza\Ship24\Data;
 
 use Spatie\LaravelData\Data;
 
-class ShipmentRecipientData extends Data
+class ShipmentRecipient extends Data
 {
     public function __construct(
         public ?string $name = null,

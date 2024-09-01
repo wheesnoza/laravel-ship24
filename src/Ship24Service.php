@@ -6,7 +6,7 @@ use Wheesnoza\Ship24\Collections\TrackerCollection;
 use Wheesnoza\Ship24\Collections\TrackingCollection;
 use Wheesnoza\Ship24\Concerns\HandleTrackerOrTrackingNumber;
 use Wheesnoza\Ship24\Data\CreateTrackerData;
-use Wheesnoza\Ship24\Data\TrackerData;
+use Wheesnoza\Ship24\Data\Tracker;
 use Wheesnoza\Ship24\Requests\CreateTrackerAndGetTrackingResults;
 use Wheesnoza\Ship24\Requests\CreateTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackerRequest;
@@ -16,7 +16,7 @@ use Wheesnoza\Ship24\Requests\GetTrackingResultsByTrackingNumberRequest;
 
 class Ship24Service
 {
-    public function tracker(string $trackerId): TrackerData
+    public function tracker(string $trackerId): Tracker
     {
         return app(GetTrackerRequest::class)->send($trackerId);
     }
@@ -26,7 +26,7 @@ class Ship24Service
         return app(GetTrackersRequest::class)->send($page, $limit);
     }
 
-    public function createTracker(CreateTrackerData|string $trackerOrTrackingNumber): TrackerData
+    public function createTracker(CreateTrackerData|string $trackerOrTrackingNumber): Tracker
     {
         return app(CreateTrackerRequest::class)->send(HandleTrackerOrTrackingNumber::handle($trackerOrTrackingNumber));
     }

@@ -9,14 +9,16 @@ use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
 
-class ShipmentDeliveryData extends Data
+class Tracker extends Data
 {
     public function __construct(
+        public readonly string $trackerId,
+        public readonly string $trackingNumber,
+        public readonly ?string $shipmentReference,
+        public readonly string $isSubscribed,
         #[WithCast(DateTimeInterfaceCast::class, format: 'Y-m-d\TH:i:s.u\Z')]
         #[WithTransformer(DateTimeInterfaceTransformer::class, format: 'Y-m-d\TH:i:s.u\Z')]
-        public readonly ?Carbon $estimatedDeliveryDate,
-        public readonly ?string $service,
-        public readonly ?string $signedBy,
+        public readonly Carbon $createdAt
     ) {
     }
 }

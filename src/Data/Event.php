@@ -9,7 +9,7 @@ use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
 
-class EventData extends Data
+class Event extends Data
 {
     public function __construct(
         public readonly string $eventId,
