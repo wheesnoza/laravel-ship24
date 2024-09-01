@@ -8,7 +8,6 @@ use Wheesnoza\Ship24\Collections\TrackerCollection;
 use Wheesnoza\Ship24\Collections\TrackingCollection;
 use Wheesnoza\Ship24\Data\CreateTrackerData;
 use Wheesnoza\Ship24\Data\Tracker;
-use Wheesnoza\Ship24\Data\Tracking;
 use Wheesnoza\Ship24\Facades\Ship24;
 
 class GetTrackerRequestTest extends TestCase
