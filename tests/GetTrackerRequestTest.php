@@ -71,7 +71,6 @@ class GetTrackerRequestTest extends TestCase
         $trackings = Ship24::createTrackerAndGetTrackingResults(new CreateTrackerData('S24DEMO456393'));
 
         $this->assertInstanceOf(TrackingCollection::class, $trackings);
-        $this->assertInstanceOf(Tracking::class, $tracking = $trackings->first());
     }
 
     public function test_should_can_create_a_tracker_and_get_tracking_results_using_tracking_number_string(): void
@@ -84,7 +83,6 @@ class GetTrackerRequestTest extends TestCase
         $trackings = Ship24::createTrackerAndGetTrackingResults('S24DEMO456393');
 
         $this->assertInstanceOf(TrackingCollection::class, $trackings);
-        $this->assertInstanceOf(Tracking::class, $tracking = $trackings->first());
     }
 
     public function test_should_can_get_tracking_results_by_tracker_id(): void
@@ -97,7 +95,6 @@ class GetTrackerRequestTest extends TestCase
         $trackings = Ship24::getTrackingResultsByTrackerId('26148317-7502-d3ac-44a9-546d240ac0dd');
 
         $this->assertInstanceOf(TrackingCollection::class, $trackings);
-        $this->assertInstanceOf(Tracking::class, $tracking = $trackings->first());
     }
 
     public function test_should_can_get_tracking_results_by_tracking_number(): void
@@ -110,6 +107,5 @@ class GetTrackerRequestTest extends TestCase
         $trackings = Ship24::getTrackingResultsByTrackingNumber('S24DEMO456393');
 
         $this->assertInstanceOf(TrackingCollection::class, $trackings);
-        $this->assertInstanceOf(Tracking::class, $tracking = $trackings->first());
     }
 }

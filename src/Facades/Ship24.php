@@ -11,7 +11,7 @@ use Wheesnoza\Ship24\Ship24Service;
 
 /**
  * @method static Tracker tracker(string $trackerId)
- * @method static TrackerCollection trackers(int $page, int $limit)
+ * @method static TrackerCollection trackers(int $page = 1, int $limit = 40)
  * @method static Tracker createTracker(CreateTracker|string $trackerOrTrackingNumber)
  * @method static TrackingCollection createTrackerAndGetTrackingResults(CreateTracker|string $trackerOrTrackingNumber)
  * @method static TrackingCollection getTrackingResultsByTrackerId(string $trackerId)
