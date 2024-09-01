@@ -15,4 +15,9 @@ abstract class TestCase extends Orchestra
             Ship24ServiceProvider::class,
         ];
     }
+
+    protected function fixture(string $name)
+    {
+        
+    }
 }
