@@ -14,6 +14,8 @@ use Wheesnoza\Ship24\Ship24Service;
  * @method static TrackerCollection trackers(int $page, int $limit)
  * @method static TrackerData createTracker(CreateTrackerData|string $trackerOrTrackingNumber)
  * @method static TrackingCollection createTrackerAndGetTrackingResults(CreateTrackerData|string $trackerOrTrackingNumber)
+ * @method static TrackingCollection getTrackingResultsByTrackerId(string $trackerId)
+ * @method static TrackingCollection getTrackingResultsByTrackingNumber(string $trackingNumber)
  */
 class Ship24 extends Facade
 {

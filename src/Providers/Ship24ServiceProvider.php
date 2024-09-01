@@ -7,6 +7,8 @@ use Wheesnoza\Ship24\Requests\CreateTrackerAndGetTrackingResults;
 use Wheesnoza\Ship24\Requests\CreateTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackersRequest;
+use Wheesnoza\Ship24\Requests\GetTrackingResultsByTrackerIdRequest;
+use Wheesnoza\Ship24\Requests\GetTrackingResultsByTrackingNumberRequest;
 
 class Ship24ServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,8 @@ class Ship24ServiceProvider extends ServiceProvider
             GetTrackersRequest::class,
             CreateTrackerRequest::class,
             CreateTrackerAndGetTrackingResults::class,
+            GetTrackingResultsByTrackerIdRequest::class,
+            GetTrackingResultsByTrackingNumberRequest::class,
         ];
 
         foreach ($requests as $requestClass) {

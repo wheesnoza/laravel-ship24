@@ -42,7 +42,7 @@
     },
     "scripts": {
     	"test": "vendor/bin/phpunit tests --colors",
-    	"analyse" : "vendor/bin/phpstan analyse",
+    	"analyse" : "vendor/bin/phpstan analyse --memory-limit=2G",
     	"format" : "vendor/bin/php-cs-fixer fix"
     },
     "config" : {
