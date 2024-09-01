@@ -29,11 +29,10 @@ php artisan vendor:publish --provider="Wheesnoza\Ship24\Providers\Ship24ServiceP
 
 ## Configuration
 
-The package requires an API token and URI from Ship24, which you should add to your `.env` file:
+The package requires an API token, which you should add to your `.env` file:
 
 ```env
 SHIP24_ACCESS_TOKEN=your-access-token
-SHIP24_URI=https://api.ship24.com/public/v1
 ```
 
 ## Usage

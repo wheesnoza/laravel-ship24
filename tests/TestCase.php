@@ -18,6 +18,6 @@ abstract class TestCase extends Orchestra
 
     protected function fixture(string $name)
     {
-        
+        return file_get_contents("Fixtures/$name.json", true);
     }
 }
