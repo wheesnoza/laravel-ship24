@@ -7,6 +7,7 @@ use Wheesnoza\Ship24\Collections\TrackerCollection;
 use Wheesnoza\Ship24\Collections\TrackingCollection;
 use Wheesnoza\Ship24\Data\CreateTracker;
 use Wheesnoza\Ship24\Data\Tracker;
+use Wheesnoza\Ship24\RateLimit\RateLimitContext;
 use Wheesnoza\Ship24\Ship24Service;
 
 /**
@@ -16,6 +17,7 @@ use Wheesnoza\Ship24\Ship24Service;
  * @method static TrackingCollection createTrackerAndGetTrackingResults(CreateTracker|string $trackerOrTrackingNumber)
  * @method static TrackingCollection getTrackingResultsByTrackerId(string $trackerId)
  * @method static TrackingCollection getTrackingResultsByTrackingNumber(string $trackingNumber)
+ * @method static RateLimitContext|null rateLimit()
  */
 class Ship24 extends Facade
 {

@@ -7,6 +7,8 @@ use Wheesnoza\Ship24\Collections\TrackingCollection;
 use Wheesnoza\Ship24\Concerns\HandleTrackerOrTrackingNumber;
 use Wheesnoza\Ship24\Data\CreateTrackerData;
 use Wheesnoza\Ship24\Data\Tracker;
+use Wheesnoza\Ship24\RateLimit\RateLimitContext;
+use Wheesnoza\Ship24\RateLimit\RateLimitState;
 use Wheesnoza\Ship24\Requests\CreateTrackerAndGetTrackingResults;
 use Wheesnoza\Ship24\Requests\CreateTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackerRequest;
@@ -44,5 +46,10 @@ class Ship24Service
     public function getTrackingResultsByTrackingNumber(string $trackingNumber): TrackingCollection
     {
         return app(GetTrackingResultsByTrackingNumberRequest::class)->send($trackingNumber);
+    }
+
+    public function rateLimit(): ?RateLimitContext
+    {
+        return RateLimitState::latest();
     }
 }

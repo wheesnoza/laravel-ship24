@@ -8,9 +8,8 @@ class GetTrackerRequest extends Request
 {
     public function send(string $trackerId): Tracker
     {
-        $response = $this->http()
-            ->get($this->url("trackers/$trackerId"), $this->query())
-            ->throw();
+        $response = $this->sendWithRateLimit(fn () => $this->http()
+            ->get($this->url("trackers/$trackerId"), $this->query()));
 
         return Tracker::from($response->json('data.tracker'));
     }

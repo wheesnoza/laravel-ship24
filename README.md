@@ -6,12 +6,51 @@
 
 Laravel Ship24 is a powerful package that integrates the Ship24 API seamlessly into your Laravel application. With this package, you can easily track shipments, create new trackers, and manage your tracking information.
 
+## Table of Contents
+
+- [Features](#features)
+  - [Easy Installation](#easy-installation)
+  - [Tracking API Integration](#tracking-api-integration)
+  - [Extensible Architecture](#extensible-architecture)
+  - [Laravel 11/12 Compatibility](#laravel-1112-compatibility)
+  - [Rate Limit Handling](#rate-limit-handling)
+- [Compatibility](#compatibility)
+- [Support Policy](#support-policy)
+- [Verification Status](#verification-status)
+- [Known Limitations](#known-limitations)
+- [Breaking Changes](#breaking-changes)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Rate Limit Handling](#rate-limit-handling-1)
+  - [Configuration](#configuration-1)
+  - [Accessing Rate Limit Information](#accessing-rate-limit-information)
+  - [Behavior](#behavior)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Features
 
-- **Easy Installation**: Quickly set up and integrate the Ship24 API.
-- **API Integration**: Full support for Ship24's tracking API.
-- **Extensible**: Customize and extend the package according to your needs.
-- **Compatible with Laravel 11 and 12**: Works with the latest versions of Laravel.
+### Easy Installation
+
+Install via Composer and publish the configuration file to get started quickly.
+
+### Tracking API Integration
+
+Provides simplified access to Ship24 tracking endpoints for creating trackers and retrieving results.
+
+### Extensible Architecture
+
+Uses a layered structure (Facade/Service/Requests/Data) so you can extend or customize behaviors without touching public APIs.
+
+### Laravel 11/12 Compatibility
+
+Maintains compatibility with the latest Laravel versions and modern PHP runtimes.
+
+### Rate Limit Handling
+
+Supports automatic backoff, exposes rate limit state, and raises a dedicated exception when rate limits are exceeded.
 
 ## Compatibility
 
@@ -87,6 +126,34 @@ use Wheesnoza\Ship24\Facades\Ship24;
 
 $tracker = Ship24::createTracker('TRACKING_NUMBER');
 ```
+
+## Rate Limit Handling
+
+Rate Limit Handling provides automatic backoff based on RateLimit headers and exposes the latest rate limit information for monitoring and logging. It also raises a dedicated exception when rate limit exhaustion persists.
+
+### Configuration
+
+```env
+SHIP24_RATE_LIMIT_ENABLED=true
+SHIP24_RATE_LIMIT_MAX_ATTEMPTS=3
+SHIP24_RATE_LIMIT_BASE_DELAY_SECONDS=2
+SHIP24_RATE_LIMIT_MAX_DELAY_SECONDS=60
+```
+
+### Accessing Rate Limit Information
+
+Use the following to retrieve the latest rate limit information captured from the most recent API response.
+
+```php
+use Wheesnoza\Ship24\Facades\Ship24;
+
+$rateLimit = Ship24::rateLimit();
+```
+
+### Behavior
+
+- If RateLimit headers are missing, the package falls back to the default backoff settings.
+- If rate limiting persists beyond the maximum attempts, a dedicated exception is raised.
 
 ## Testing
 

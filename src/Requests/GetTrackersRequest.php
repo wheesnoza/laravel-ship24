@@ -9,9 +9,8 @@ class GetTrackersRequest extends Request
 {
     public function send(int $page = 1, int $limit = 40): TrackerCollection
     {
-        $response = $this->http()
-            ->get($this->url("trackers"), $this->query(['page' => $page, 'limit' => $limit]))
-             ->throw();
+        $response = $this->sendWithRateLimit(fn () => $this->http()
+            ->get($this->url("trackers"), $this->query(['page' => $page, 'limit' => $limit])));
 
         /** @var TrackerCollection $trackers */
         $trackers = Tracker::collect($response->collect('data.trackers'), TrackerCollection::class);

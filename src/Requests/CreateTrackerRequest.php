@@ -9,9 +9,8 @@ class CreateTrackerRequest extends Request
 {
     public function send(CreateTrackerData $data): Tracker
     {
-        $response = $this->http()
-            ->post($this->url("trackers"), $data->toArray())
-             ->throw();
+        $response = $this->sendWithRateLimit(fn () => $this->http()
+            ->post($this->url("trackers"), $data->toArray()));
 
         return Tracker::from($response->json('data.tracker'));
     }
