@@ -2,26 +2,29 @@
 
 namespace Wheesnoza\Ship24\Requests;
 
-use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use Wheesnoza\Ship24\Exceptions\RateLimitExceededException;
 use Wheesnoza\Ship24\RateLimit\RateLimitConfig;
-use Wheesnoza\Ship24\RateLimit\RateLimitContext;
-use Wheesnoza\Ship24\RateLimit\RateLimitState;
-use Wheesnoza\Ship24\RateLimit\RetryStrategy;
 
 abstract class Request
 {
+    protected readonly UrlBuilder $urlBuilder;
+    protected readonly RateLimitHandler $rateLimitHandler;
+    protected readonly RequestTransport $transport;
+
     public function __construct(
         protected readonly string $accessToken,
         protected readonly string $uri,
+        ?UrlBuilder $urlBuilder = null,
+        ?RateLimitHandler $rateLimitHandler = null,
+        ?RequestTransport $transport = null,
     ) {
-    }
-
-    protected function http(): PendingRequest
-    {
-        return Http::withToken($this->accessToken);
+        $this->urlBuilder = $urlBuilder ?? new UrlBuilder($this->uri);
+        $this->rateLimitHandler = $rateLimitHandler ?? new RateLimitHandler(
+            RateLimitConfig::fromConfig(),
+            new SleepDelayStrategy()
+        );
+        $this->transport = $transport ?? new RequestTransport(Http::withToken($this->accessToken));
     }
 
     /**
@@ -30,14 +33,12 @@ abstract class Request
      */
     protected function query(array $extra = []): array
     {
-        return [
-          ...$extra,
-        ];
+        return $this->urlBuilder->buildQuery($extra);
     }
 
     protected function url(string $path): string
     {
-        return "{$this->uri}/public/v1/$path";
+        return $this->urlBuilder->buildUrl($path);
     }
 
     /**
@@ -45,29 +46,27 @@ abstract class Request
      */
     protected function sendWithRateLimit(callable $request): Response
     {
-        $config = RateLimitConfig::fromConfig();
-        $strategy = new RetryStrategy($config);
-        $attempt = 1;
+        return $this->rateLimitHandler->handle($request);
+    }
 
-        while (true) {
-            $response = $request();
-            $context = RateLimitContext::fromResponse($response);
-            RateLimitState::set($context);
+    /**
+     * @param array<string, mixed> $query
+     */
+    protected function get(string $path, array $query = []): Response
+    {
+        $url = $this->urlBuilder->buildUrl($path);
+        $query = $this->urlBuilder->buildQuery($query);
 
-            if ($response->status() !== 429) {
-                return $response->throw();
-            }
+        return $this->rateLimitHandler->handle(fn () => $this->transport->get($url, $query));
+    }
 
-            if (!$strategy->shouldRetry($attempt, $context)) {
-                throw new RateLimitExceededException($context);
-            }
+    /**
+     * @param array<string, mixed> $payload
+     */
+    protected function post(string $path, array $payload = []): Response
+    {
+        $url = $this->urlBuilder->buildUrl($path);
 
-            $delay = $strategy->backoffSeconds($attempt, $context);
-            if ($delay > 0) {
-                sleep($delay);
-            }
-
-            $attempt++;
-        }
+        return $this->rateLimitHandler->handle(fn () => $this->transport->post($url, $payload));
     }
 }

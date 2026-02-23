@@ -9,8 +9,7 @@ class GetTrackingResultsByTrackingNumberRequest extends Request
 {
     public function send(string $trackingNumber): TrackingCollection
     {
-        $response = $this->sendWithRateLimit(fn () => $this->http()
-            ->get($this->url("trackers/search/$trackingNumber/results"), $this->query()));
+        $response = $this->get("trackers/search/$trackingNumber/results");
 
         /** @var TrackingCollection $trackings */
         $trackings = Tracking::collect($response->collect('data.trackings'), TrackingCollection::class);

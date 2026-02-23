@@ -10,8 +10,7 @@ class CreateTrackerAndGetTrackingResults extends Request
 {
     public function send(CreateTrackerData $data): TrackingCollection
     {
-        $response = $this->sendWithRateLimit(fn () => $this->http()
-            ->post($this->url("trackers/track"), $data->toArray()));
+        $response = $this->post('trackers/track', $data->toArray());
 
         /** @var TrackingCollection $trackings */
         $trackings = Tracking::collect($response->collect('data.trackings'), TrackingCollection::class);
