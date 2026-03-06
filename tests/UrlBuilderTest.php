@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Wheesnoza\Ship24\Requests\UrlBuilder;
+use Wheesnoza\Ship24\Support\UrlBuilder;
 
 class UrlBuilderTest extends TestCase
 {
