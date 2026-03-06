@@ -1,6 +1,6 @@
 <?php
 
-namespace Wheesnoza\Ship24\Requests;
+namespace Wheesnoza\Ship24\Support;
 
 class UrlBuilder
 {
