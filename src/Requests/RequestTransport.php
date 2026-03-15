@@ -7,8 +7,15 @@ use Illuminate\Http\Client\Response;
 
 class RequestTransport
 {
-    public function __construct(private readonly PendingRequest $client)
+    /** @var PendingRequest<false> */
+    private readonly PendingRequest $client;
+
+    /**
+     * @param PendingRequest<false> $client
+     */
+    public function __construct(PendingRequest $client)
     {
+        $this->client = $client;
     }
 
     /**

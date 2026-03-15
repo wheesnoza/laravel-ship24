@@ -10,7 +10,7 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 final class CacheEntry extends Data
 {
     /**
-     * @param array<string, mixed> $value
+     * @param array<array-key, mixed> $value
      */
     public function __construct(
         public readonly array $value,

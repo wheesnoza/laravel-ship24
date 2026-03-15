@@ -9,6 +9,9 @@ class RateLimitContext
     /** @var array<string, array<int, string>> */
     private array $rawHeaders;
 
+    /**
+     * @param array<string, array<int, string>> $rawHeaders
+     */
     public function __construct(
         private readonly ?int $limit,
         private readonly ?int $remaining,

@@ -33,15 +33,22 @@ class CacheAwareTransport
         $cacheKey = $this->keyFactory->make($this->inputFromUrl('GET', $url, $query, []));
         $cached = $this->repository->get($cacheKey);
         if ($cached) {
-            return new Response(new PsrResponse(200, [], json_encode($cached->value)));
+            $encoded = json_encode($cached->value);
+
+            return new Response(new PsrResponse(200, [], $encoded === false ? '{}' : $encoded));
         }
 
         $response = $this->send(fn () => $this->transport->get($url, $query));
 
         if ($response->successful()) {
+            $payload = $response->json();
+            if (! is_array($payload)) {
+                return $response;
+            }
+
             $this->repository->put(
                 $cacheKey,
-                new CacheEntry($response->json(), 1, time()),
+                new CacheEntry($payload, 1, time()),
                 $this->policy->ttlSeconds()
             );
         }

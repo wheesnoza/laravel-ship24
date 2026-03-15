@@ -18,6 +18,12 @@ class CacheOptionsResolver
             300,
         );
         $store = Config::get(sprintf('%s.store', $keyPrefix), null);
+        if ($store !== null && ! is_string($store)) {
+            throw new InvalidCacheConfigurationException(
+                'Cache store must be a string or null.',
+            );
+        }
+
         $prefix = Config::string(sprintf('%s.prefix', $keyPrefix), 'ship24');
         if ($ttlSeconds <= 0) {
             throw new InvalidCacheConfigurationException(

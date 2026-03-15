@@ -53,4 +53,15 @@ class CacheOptionsResolverTest extends TestCase
         $resolver->resolve();
     }
 
+    public function test_throws_when_store_is_not_string(): void
+    {
+        Config::set('ship24.cache', [
+            'store' => ['array'],
+        ]);
+
+        $resolver = new CacheOptionsResolver();
+
+        $this->expectException(InvalidCacheConfigurationException::class);
+        $resolver->resolve();
+    }
 }
