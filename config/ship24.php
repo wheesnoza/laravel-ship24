@@ -9,4 +9,10 @@ return [
         'base_delay_seconds' => env('SHIP24_RATE_LIMIT_BASE_DELAY_SECONDS', 2),
         'max_delay_seconds' => env('SHIP24_RATE_LIMIT_MAX_DELAY_SECONDS', 60),
     ],
+    'cache' => [
+        'enabled' => env('SHIP24_CACHE_ENABLED', false),
+        'ttl_seconds' => env('SHIP24_CACHE_TTL_SECONDS', 300),
+        'store' => env('SHIP24_CACHE_STORE'),
+        'prefix' => env('SHIP24_CACHE_PREFIX', 'ship24'),
+    ],
 ];

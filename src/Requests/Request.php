@@ -3,28 +3,18 @@
 namespace Wheesnoza\Ship24\Requests;
 
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
-use Wheesnoza\Ship24\RateLimit\RateLimitConfig;
+use Wheesnoza\Ship24\Support\UrlBuilder;
 
 abstract class Request
 {
-    protected readonly UrlBuilder $urlBuilder;
-    protected readonly RateLimitHandler $rateLimitHandler;
-    protected readonly RequestTransport $transport;
-
     public function __construct(
         protected readonly string $accessToken,
         protected readonly string $uri,
-        ?UrlBuilder $urlBuilder = null,
-        ?RateLimitHandler $rateLimitHandler = null,
-        ?RequestTransport $transport = null,
+        protected readonly UrlBuilder $urlBuilder,
+        protected readonly RateLimitHandler $rateLimitHandler,
+        protected readonly RequestTransport $transport,
+        protected readonly CacheAwareTransport $cacheTransport,
     ) {
-        $this->urlBuilder = $urlBuilder ?? new UrlBuilder($this->uri);
-        $this->rateLimitHandler = $rateLimitHandler ?? new RateLimitHandler(
-            RateLimitConfig::fromConfig(),
-            new SleepDelayStrategy()
-        );
-        $this->transport = $transport ?? new RequestTransport(Http::withToken($this->accessToken));
     }
 
     /**
@@ -57,7 +47,7 @@ abstract class Request
         $url = $this->urlBuilder->buildUrl($path);
         $query = $this->urlBuilder->buildQuery($query);
 
-        return $this->rateLimitHandler->handle(fn () => $this->transport->get($url, $query));
+        return $this->cacheTransport->get($url, $query);
     }
 
     /**
@@ -67,6 +57,6 @@ abstract class Request
     {
         $url = $this->urlBuilder->buildUrl($path);
 
-        return $this->rateLimitHandler->handle(fn () => $this->transport->post($url, $payload));
+        return $this->cacheTransport->post($url, $payload);
     }
 }
