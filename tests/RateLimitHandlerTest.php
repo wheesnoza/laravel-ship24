@@ -4,11 +4,11 @@ namespace Tests;
 
 use GuzzleHttp\Psr7\Response as Psr7Response;
 use Illuminate\Http\Client\Response;
+use Wheesnoza\Ship24\Data\RateLimitConfig;
 use Wheesnoza\Ship24\Exceptions\RateLimitExceededException;
-use Wheesnoza\Ship24\RateLimit\RateLimitConfig;
-use Wheesnoza\Ship24\RateLimit\RateLimitState;
 use Wheesnoza\Ship24\Requests\DelayStrategy;
 use Wheesnoza\Ship24\Requests\RateLimitHandler;
+use Wheesnoza\Ship24\Support\RateLimitState;
 
 class RateLimitHandlerTest extends TestCase
 {

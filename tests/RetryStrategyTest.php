@@ -4,9 +4,9 @@ namespace Tests;
 
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
-use Wheesnoza\Ship24\RateLimit\RateLimitConfig;
-use Wheesnoza\Ship24\RateLimit\RateLimitContext;
-use Wheesnoza\Ship24\RateLimit\RetryStrategy;
+use Wheesnoza\Ship24\Data\RateLimitConfig;
+use Wheesnoza\Ship24\Requests\RateLimitContextFactory;
+use Wheesnoza\Ship24\Services\RetryStrategy;
 
 class RetryStrategyTest extends TestCase
 {
@@ -16,7 +16,7 @@ class RetryStrategyTest extends TestCase
         $strategy = new RetryStrategy($config);
 
         $response = new Response(new PsrResponse(429, ['Retry-After' => ['7']]));
-        $context = RateLimitContext::fromResponse($response);
+        $context = (new RateLimitContextFactory())->fromResponse($response);
 
         $this->assertSame(7, $strategy->backoffSeconds(1, $context));
     }
@@ -27,7 +27,7 @@ class RetryStrategyTest extends TestCase
         $strategy = new RetryStrategy($config);
 
         $response = new Response(new PsrResponse(429, []));
-        $context = RateLimitContext::fromResponse($response);
+        $context = (new RateLimitContextFactory())->fromResponse($response);
 
         $this->assertSame(5, $strategy->backoffSeconds(1, $context));
     }

@@ -1,8 +1,10 @@
 <?php
 
-namespace Wheesnoza\Ship24\RateLimit;
+namespace Wheesnoza\Ship24\Support;
 
-class RateLimitState
+use Wheesnoza\Ship24\Data\RateLimitContext;
+
+final class RateLimitState
 {
     private static ?RateLimitContext $latest = null;
 

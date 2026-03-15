@@ -1,8 +1,11 @@
 <?php
 
-namespace Wheesnoza\Ship24\RateLimit;
+namespace Wheesnoza\Ship24\Services;
 
-class RetryStrategy
+use Wheesnoza\Ship24\Data\RateLimitConfig;
+use Wheesnoza\Ship24\Data\RateLimitContext;
+
+final class RetryStrategy
 {
     public function __construct(private readonly RateLimitConfig $config)
     {
@@ -19,7 +22,7 @@ class RetryStrategy
 
     public function backoffSeconds(int $attempt, ?RateLimitContext $context): int
     {
-        $delay = $context?->retryAfterSeconds();
+        $delay = $context?->retryAfterSeconds;
 
         if ($delay === null) {
             $delay = $this->config->baseDelaySeconds;

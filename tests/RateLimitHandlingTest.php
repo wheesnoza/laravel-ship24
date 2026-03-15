@@ -4,9 +4,9 @@ namespace Tests;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
+use Wheesnoza\Ship24\Data\RateLimitContext;
 use Wheesnoza\Ship24\Exceptions\RateLimitExceededException;
 use Wheesnoza\Ship24\Facades\Ship24;
-use Wheesnoza\Ship24\RateLimit\RateLimitContext;
 
 class RateLimitHandlingTest extends TestCase
 {

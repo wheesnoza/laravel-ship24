@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Facade;
 use Wheesnoza\Ship24\Collections\TrackerCollection;
 use Wheesnoza\Ship24\Collections\TrackingCollection;
 use Wheesnoza\Ship24\Data\CreateTracker;
+use Wheesnoza\Ship24\Data\RateLimitContext;
 use Wheesnoza\Ship24\Data\Tracker;
-use Wheesnoza\Ship24\RateLimit\RateLimitContext;
 use Wheesnoza\Ship24\Ship24Service;
 
 /**

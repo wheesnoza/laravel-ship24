@@ -4,7 +4,7 @@ namespace Wheesnoza\Ship24\Providers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
-use Wheesnoza\Ship24\RateLimit\RateLimitConfig;
+use Wheesnoza\Ship24\Data\RateLimitConfig;
 use Wheesnoza\Ship24\Repositories\CacheRepository;
 use Wheesnoza\Ship24\Requests\CacheAwareTransport;
 use Wheesnoza\Ship24\Requests\CreateTrackerAndGetTrackingResults;
@@ -13,6 +13,7 @@ use Wheesnoza\Ship24\Requests\GetTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackersRequest;
 use Wheesnoza\Ship24\Requests\GetTrackingResultsByTrackerIdRequest;
 use Wheesnoza\Ship24\Requests\GetTrackingResultsByTrackingNumberRequest;
+use Wheesnoza\Ship24\Requests\RateLimitContextFactory;
 use Wheesnoza\Ship24\Requests\RateLimitHandler;
 use Wheesnoza\Ship24\Requests\RequestTransport;
 use Wheesnoza\Ship24\Requests\SleepDelayStrategy;
@@ -53,8 +54,14 @@ class Ship24ServiceProvider extends ServiceProvider
                 $uri = config()->string('ship24.uri');
                 $urlBuilder = new UrlBuilder($uri);
                 $rateLimitHandler = new RateLimitHandler(
-                    RateLimitConfig::fromConfig(),
-                    new SleepDelayStrategy()
+                    new RateLimitConfig(
+                        config()->boolean('ship24.rate_limit.enabled', true),
+                        config()->integer('ship24.rate_limit.max_attempts', 3),
+                        config()->integer('ship24.rate_limit.base_delay_seconds', 2),
+                        config()->integer('ship24.rate_limit.max_delay_seconds', 60),
+                    ),
+                    new SleepDelayStrategy(),
+                    new RateLimitContextFactory()
                 );
                 $transport = new RequestTransport(Http::withToken($accessToken));
                 $cachePolicy = $this->app->make(CachePolicy::class);

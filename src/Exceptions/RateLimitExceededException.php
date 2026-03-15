@@ -3,7 +3,7 @@
 namespace Wheesnoza\Ship24\Exceptions;
 
 use RuntimeException;
-use Wheesnoza\Ship24\RateLimit\RateLimitContext;
+use Wheesnoza\Ship24\Data\RateLimitContext;
 
 class RateLimitExceededException extends RuntimeException
 {
