@@ -2,8 +2,8 @@
 
 namespace Wheesnoza\Ship24\Data;
 
-use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Attributes\WithTransformer;
+use Spatie\LaravelData\Data;
 use Wheesnoza\Ship24\Transformers\SortedArrayTransformer;
 
 final class CacheKeyInput extends Data

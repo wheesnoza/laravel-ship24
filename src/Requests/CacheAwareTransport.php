@@ -2,8 +2,8 @@
 
 namespace Wheesnoza\Ship24\Requests;
 
-use Illuminate\Http\Client\Response;
 use GuzzleHttp\Psr7\Response as PsrResponse;
+use Illuminate\Http\Client\Response;
 use Wheesnoza\Ship24\Data\CacheEntry;
 use Wheesnoza\Ship24\Data\CacheKeyInput;
 use Wheesnoza\Ship24\Repositories\CacheRepository;
@@ -26,7 +26,7 @@ class CacheAwareTransport
      */
     public function get(string $url, array $query = []): Response
     {
-        if (!$this->policy->isEnabled()) {
+        if (! $this->policy->isEnabled()) {
             return $this->send(fn () => $this->transport->get($url, $query));
         }
 

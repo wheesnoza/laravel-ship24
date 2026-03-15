@@ -2,20 +2,20 @@
 
 namespace Wheesnoza\Ship24\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\ServiceProvider;
 use Wheesnoza\Ship24\RateLimit\RateLimitConfig;
+use Wheesnoza\Ship24\Repositories\CacheRepository;
+use Wheesnoza\Ship24\Requests\CacheAwareTransport;
 use Wheesnoza\Ship24\Requests\CreateTrackerAndGetTrackingResults;
 use Wheesnoza\Ship24\Requests\CreateTrackerRequest;
-use Wheesnoza\Ship24\Requests\CacheAwareTransport;
 use Wheesnoza\Ship24\Requests\GetTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackersRequest;
 use Wheesnoza\Ship24\Requests\GetTrackingResultsByTrackerIdRequest;
 use Wheesnoza\Ship24\Requests\GetTrackingResultsByTrackingNumberRequest;
-use Wheesnoza\Ship24\Requests\RequestTransport;
 use Wheesnoza\Ship24\Requests\RateLimitHandler;
+use Wheesnoza\Ship24\Requests\RequestTransport;
 use Wheesnoza\Ship24\Requests\SleepDelayStrategy;
-use Wheesnoza\Ship24\Repositories\CacheRepository;
 use Wheesnoza\Ship24\Services\CacheKeyFactory;
 use Wheesnoza\Ship24\Services\CacheOptionsResolver;
 use Wheesnoza\Ship24\Services\CachePolicy;

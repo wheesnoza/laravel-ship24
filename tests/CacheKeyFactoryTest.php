@@ -53,7 +53,7 @@ class CacheKeyFactoryTest extends TestCase
 
     private function fakeResolver(CacheOptions $options): CacheOptionsResolver
     {
-        return new class($options) extends CacheOptionsResolver {
+        return new class ($options) extends CacheOptionsResolver {
             public function __construct(private CacheOptions $options)
             {
             }

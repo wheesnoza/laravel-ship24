@@ -2,20 +2,19 @@
 
 namespace Tests;
 
+use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Psr7\Response as PsrResponse;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Wheesnoza\Ship24\Requests\CacheAwareTransport;
 use Wheesnoza\Ship24\Data\CacheEntry;
 use Wheesnoza\Ship24\Data\CacheKey;
-use Wheesnoza\Ship24\Data\CacheKeyInput;
 use Wheesnoza\Ship24\Data\CacheOptions;
 use Wheesnoza\Ship24\Repositories\CacheRepository;
+use Wheesnoza\Ship24\Requests\CacheAwareTransport;
+use Wheesnoza\Ship24\Requests\RequestTransport;
 use Wheesnoza\Ship24\Services\CacheKeyFactory;
 use Wheesnoza\Ship24\Services\CacheOptionsResolver;
 use Wheesnoza\Ship24\Services\CachePolicy;
-use Wheesnoza\Ship24\Requests\RequestTransport;
 
 #[CoversClass(CacheAwareTransport::class)]
 class CacheAwareTransportTest extends TestCase
@@ -68,7 +67,7 @@ class CacheAwareTransportTest extends TestCase
 
     private function fakeResolver(CacheOptions $options): CacheOptionsResolver
     {
-        return new class($options) extends CacheOptionsResolver {
+        return new class ($options) extends CacheOptionsResolver {
             public function __construct(private CacheOptions $options)
             {
             }
@@ -120,7 +119,7 @@ final class FakeCacheRepository extends CacheRepository
 
     public function __construct(private ?CacheEntry $entry)
     {
-        parent::__construct(new class(new CacheOptions(false, 300, null, 'ship24')) extends CacheOptionsResolver {
+        parent::__construct(new class (new CacheOptions(false, 300, null, 'ship24')) extends CacheOptionsResolver {
             public function __construct(private CacheOptions $options)
             {
             }

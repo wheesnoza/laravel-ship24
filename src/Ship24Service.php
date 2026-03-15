@@ -4,7 +4,6 @@ namespace Wheesnoza\Ship24;
 
 use Wheesnoza\Ship24\Collections\TrackerCollection;
 use Wheesnoza\Ship24\Collections\TrackingCollection;
-use Wheesnoza\Ship24\Support\HandleTrackerOrTrackingNumber;
 use Wheesnoza\Ship24\Data\CreateTrackerData;
 use Wheesnoza\Ship24\Data\Tracker;
 use Wheesnoza\Ship24\RateLimit\RateLimitContext;
@@ -15,6 +14,7 @@ use Wheesnoza\Ship24\Requests\GetTrackerRequest;
 use Wheesnoza\Ship24\Requests\GetTrackersRequest;
 use Wheesnoza\Ship24\Requests\GetTrackingResultsByTrackerIdRequest;
 use Wheesnoza\Ship24\Requests\GetTrackingResultsByTrackingNumberRequest;
+use Wheesnoza\Ship24\Support\HandleTrackerOrTrackingNumber;
 
 class Ship24Service
 {

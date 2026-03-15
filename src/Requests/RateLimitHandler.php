@@ -36,7 +36,7 @@ class RateLimitHandler
                 return $response->throw();
             }
 
-            if (!$this->strategy->shouldRetry($attempt, $context)) {
+            if (! $this->strategy->shouldRetry($attempt, $context)) {
                 throw new RateLimitExceededException($context);
             }
 

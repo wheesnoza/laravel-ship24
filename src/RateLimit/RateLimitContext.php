@@ -84,7 +84,7 @@ class RateLimitContext
      */
     private static function headerInt(array $headers, string $key): ?int
     {
-        if (!array_key_exists($key, $headers)) {
+        if (! array_key_exists($key, $headers)) {
             return null;
         }
 
@@ -93,7 +93,7 @@ class RateLimitContext
             return null;
         }
 
-        if (!is_numeric($value)) {
+        if (! is_numeric($value)) {
             return null;
         }
 

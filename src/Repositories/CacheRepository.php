@@ -16,14 +16,15 @@ class CacheRepository
 
     public function __construct(
         private readonly CacheOptionsResolver $resolver,
-    ) {}
+    ) {
+    }
 
     public function get(CacheKey $key): ?CacheEntry
     {
         try {
             $store = $this->store();
             $payload = $store->get($key->value);
-            if (!is_array($payload)) {
+            if (! is_array($payload)) {
                 return null;
             }
 

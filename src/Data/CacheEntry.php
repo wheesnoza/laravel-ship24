@@ -16,5 +16,6 @@ final class CacheEntry extends Data
         public readonly array $value,
         public readonly int $version,
         public readonly int $storedAt,
-    ) {}
+    ) {
+    }
 }

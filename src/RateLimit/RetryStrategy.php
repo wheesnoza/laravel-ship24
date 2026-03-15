@@ -10,7 +10,7 @@ class RetryStrategy
 
     public function shouldRetry(int $attempt, ?RateLimitContext $context): bool
     {
-        if (!$this->config->enabled) {
+        if (! $this->config->enabled) {
             return false;
         }
 
