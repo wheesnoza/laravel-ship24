@@ -76,11 +76,7 @@ class Ship24ServiceProvider extends ServiceProvider
                 );
 
                 return new $requestClass(
-                    $accessToken,
-                    $uri,
                     $urlBuilder,
-                    $rateLimitHandler,
-                    $transport,
                     $cacheTransport,
                 );
             });

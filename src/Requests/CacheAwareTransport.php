@@ -80,6 +80,9 @@ class CacheAwareTransport
         return new CacheKeyInput($method, $baseUri, $path, $query, $payload);
     }
 
+    /**
+     * @param callable(): Response $request
+     */
     private function send(callable $request): Response
     {
         if ($this->rateLimitHandler) {

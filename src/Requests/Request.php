@@ -8,11 +8,7 @@ use Wheesnoza\Ship24\Support\UrlBuilder;
 abstract class Request
 {
     public function __construct(
-        protected readonly string $accessToken,
-        protected readonly string $uri,
         protected readonly UrlBuilder $urlBuilder,
-        protected readonly RateLimitHandler $rateLimitHandler,
-        protected readonly RequestTransport $transport,
         protected readonly CacheAwareTransport $cacheTransport,
     ) {
     }
@@ -29,14 +25,6 @@ abstract class Request
     protected function url(string $path): string
     {
         return $this->urlBuilder->buildUrl($path);
-    }
-
-    /**
-     * @param callable(): Response $request
-     */
-    protected function sendWithRateLimit(callable $request): Response
-    {
-        return $this->rateLimitHandler->handle($request);
     }
 
     /**
