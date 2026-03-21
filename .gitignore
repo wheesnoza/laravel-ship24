@@ -5,3 +5,4 @@ build/*
 .codex
 .kiro
 AGENTS.md
+.tmp
