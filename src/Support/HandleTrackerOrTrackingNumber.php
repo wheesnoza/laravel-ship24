@@ -1,6 +1,6 @@
 <?php
 
-namespace Wheesnoza\Ship24\Concerns;
+namespace Wheesnoza\Ship24\Support;
 
 use Wheesnoza\Ship24\Data\CreateTrackerData;
 

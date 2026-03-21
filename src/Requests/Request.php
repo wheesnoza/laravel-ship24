@@ -2,20 +2,15 @@
 
 namespace Wheesnoza\Ship24\Requests;
 
-use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\Response;
+use Wheesnoza\Ship24\Support\UrlBuilder;
 
 abstract class Request
 {
     public function __construct(
-        protected readonly string $accessToken,
-        protected readonly string $uri,
+        protected readonly UrlBuilder $urlBuilder,
+        protected readonly CacheAwareTransport $cacheTransport,
     ) {
-    }
-
-    protected function http(): PendingRequest
-    {
-        return Http::withToken($this->accessToken);
     }
 
     /**
@@ -24,13 +19,32 @@ abstract class Request
      */
     protected function query(array $extra = []): array
     {
-        return [
-          ...$extra,
-        ];
+        return $this->urlBuilder->buildQuery($extra);
     }
 
     protected function url(string $path): string
     {
-        return "{$this->uri}/public/v1/$path";
+        return $this->urlBuilder->buildUrl($path);
+    }
+
+    /**
+     * @param array<string, mixed> $query
+     */
+    protected function get(string $path, array $query = []): Response
+    {
+        $url = $this->urlBuilder->buildUrl($path);
+        $query = $this->urlBuilder->buildQuery($query);
+
+        return $this->cacheTransport->get($url, $query);
+    }
+
+    /**
+     * @param array<string, mixed> $payload
+     */
+    protected function post(string $path, array $payload = []): Response
+    {
+        $url = $this->urlBuilder->buildUrl($path);
+
+        return $this->cacheTransport->post($url, $payload);
     }
 }
